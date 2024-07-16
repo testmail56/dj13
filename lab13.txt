@@ -1,0 +1,30 @@
+#views
+
+from django.shortcuts import render
+from django.http import HttpResponse 
+from datetime import datetime 
+def current_datetime(request): 
+    now = datetime.now() 
+    html = f"<html><body><h1>Current Date and Time:</h1><p>{now}</p></body></html>" 
+    return HttpResponse(html)
+
+
+
+#app urls 
+
+from django.urls import path 
+from . import views 
+urlpatterns = [ 
+    path('current_datetime/', views.current_datetime), 
+]
+
+
+#project urls
+
+from django.contrib import admin
+from django.urls import path,include #import include
+#from . import views
+urlpatterns = [
+path('admin/', admin.site.urls),
+path('pg1/', include('pg1.urls')), # Include your app's URLs
+]
